@@ -75,7 +75,7 @@ bool VButtonClear::Create(string name = NULL) override
       return false;
    VButtonBase::OnChartEvent(CHARTEVENT_CHART_CHANGE, NULL, NULL, NULL);
    Description("C");
-   Tooltip("Press to clear selected profile");
+   Tooltip("DOUBLE CLICK to clear selected profile");
    BackColor(clrRed);
    return true;
 }

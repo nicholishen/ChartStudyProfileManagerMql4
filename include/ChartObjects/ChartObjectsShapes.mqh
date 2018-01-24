@@ -108,9 +108,11 @@ public:
    bool              Create(long chart_id,const string name,const int window,
                             const datetime time1,const double price1,
                             const datetime time2,const double price2,
-                            const datetime time3,const double price3);
+                            const double ellipse_scale=1.0);
    //--- method of identifying the object
    virtual int       Type(void) const { return(OBJ_ELLIPSE); }
+   virtual bool      Save(const int file_handle) override;
+   virtual bool      Load(const int file_handle) override;
   };
 //+------------------------------------------------------------------+
 //| Constructor                                                      |
@@ -130,13 +132,33 @@ CChartObjectEllipse::~CChartObjectEllipse(void)
 bool CChartObjectEllipse::Create(long chart_id,const string name,const int window,
                                  const datetime time1,const double price1,
                                  const datetime time2,const double price2,
-                                 const datetime time3,const double price3)
+                                 const double ellipse_scale=1.0)
   {
-   if(!ObjectCreate(chart_id,name,OBJ_ELLIPSE,window,time1,price1,time2,price2,time3,price3))
+   if(!ObjectCreate(chart_id,name,OBJ_ELLIPSE,window,time1,price1,time2,price2))
       return(false);
-   if(!Attach(chart_id,name,window,3))
+   if(!ObjectSetDouble(chart_id,name,OBJPROP_SCALE,ellipse_scale)) 
+      return false;
+   if(!Attach(chart_id,name,window,2))
       return(false);
 //--- successful
    return(true);
   }
 //+------------------------------------------------------------------+
+
+bool CChartObjectEllipse::Save(const int file_handle)override
+{
+   if(!CChartObject::Save(file_handle))
+      return false;
+   if(FileWriteDouble(file_handle,ObjectGetDouble(m_chart_id,m_name,OBJPROP_SCALE))!=sizeof(double))
+      return false;
+   return true;
+}
+
+bool CChartObjectEllipse::Load(const int file_handle)override
+{
+   if(!CChartObject::Load(file_handle))
+      return false;   
+   if(!ObjectSetDouble(m_chart_id,m_name,OBJPROP_SCALE,FileReadDouble(file_handle)))
+      return false; 
+   return true;
+}

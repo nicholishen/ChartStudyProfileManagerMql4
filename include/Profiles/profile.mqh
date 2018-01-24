@@ -60,7 +60,7 @@ VProfile::VProfile(VProfileManager *mgr, int profile_number)
    m_hideflag = false;
    m_profilenumber = profile_number;
    m_obj_list = new VContainerList(m_mgr);
-   m_filename = "ChartProfileManager/" + _Symbol + "/";
+   m_filename = "ChartProfileManager2/" + _Symbol + "/";
    m_filename += "_subwindow_" + string(m_mgr.SubWindow()) + "_profile_" + string(m_profilenumber) + ".bin";
 }
 //+------------------------------------------------------------------+

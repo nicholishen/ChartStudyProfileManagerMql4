@@ -368,8 +368,9 @@ CChartObject *VContainer::ChartObjectPointer()
          CChartObjectEllipse *obj = new CChartObjectEllipse;
          if (ObjectFind(id, m_name) < 0)
          {
-            if (!obj.Create(id, m_name, sw, (datetime)0, 0.0, (datetime)0, 0.0, (datetime)0, 0.0))
+            if (!obj.Create(id, m_name, sw, (datetime)0, 0.0, (datetime)0, 0.0))
             {
+               printf("Ellipse Creation Error: %s",ErrorDescription(_LastError));
                if (CheckPointer(obj))
                   delete obj;
             }
@@ -378,7 +379,7 @@ CChartObject *VContainer::ChartObjectPointer()
          }
          else
          {
-            if (!obj.Attach(id, m_name, sw, 3))
+            if (!obj.Attach(id, m_name, sw, 2))
             {
                if (CheckPointer(obj))
                   delete obj;

@@ -56,7 +56,7 @@ VProfileManager::VProfileManager(int num_profiles,
    m_num_profiles = num_profiles;
    m_size = size;
    m_color = col;
-   m_filename = "ChartProfileManager/" + _Symbol + "/last-state.bin";
+   m_filename = "ChartProfileManager2/" + _Symbol + "/last-state.bin";
    m_chartid = ::ChartID();
    m_subwindow = 0;
 }

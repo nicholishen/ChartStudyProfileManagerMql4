@@ -5,7 +5,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Copyright 2017, nicholishen"
 #property link "https://www.forexfactory.com/nicholishen"
-#property version "00.00.01"
+#property version "00.00.02"
 #property strict
 #property indicator_chart_window
 
